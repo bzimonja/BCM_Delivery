@@ -3,7 +3,16 @@
         Options -MultiViews -Indexes
     </IfModule>
 
+    # CORS - headers
+    Header always set  Access-Control-Allow-Origin "*"
+    Header always set Access-Control-Allow-Headers "origin, x-requested-with, content-type"
+    Header always set Access-Control-Allow-Methods "GET, POST, OPTIONS, PUT"
+
     RewriteEngine On
+
+    # CORS - OPTIONS method
+    RewriteCond %{REQUEST_METHOD} OPTIONS 
+    RewriteRule ^(.*)$ $1 [R=204,L]
 
     # Handle Authorization Header
     RewriteCond %{HTTP:Authorization} .
