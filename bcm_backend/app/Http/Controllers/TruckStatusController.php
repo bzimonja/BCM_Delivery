@@ -112,7 +112,7 @@ class TruckStatusController extends Controller
 
         if ($response)
         {
-            return response(json_encode($response), 400)->header('Content-Type', 'application/json');
+            return response(json_encode($response), 200)->header('Content-Type', 'application/json');
         }
 
         $parameters = $request->json()->all();
@@ -125,7 +125,7 @@ class TruckStatusController extends Controller
             $response["code"] = 4;
             $response["mesage"] = $verify_message;
 
-            return response(json_encode($response), 400)->header('Content-Type', 'application/json');
+            return response(json_encode($response), 200)->header('Content-Type', 'application/json');
         }
 
         // find the record with corresponding truck status id or truck id
@@ -145,7 +145,7 @@ class TruckStatusController extends Controller
         {
             $response["code"] = 5;
             $response["message"] = "Database update failed. Could not find the truck status.";
-            return response(json_encode($response), 400)->header('Content-Type', 'application/json');
+            return response(json_encode($response), 200)->header('Content-Type', 'application/json');
         }   
 
         //extract the update 
@@ -187,7 +187,7 @@ class TruckStatusController extends Controller
             $response["message"] = "Database update successful.";
         }
 
-        return response(json_encode($response), 400)->header('Content-Type', 'application/json');
+        return response(json_encode($response), 200)->header('Content-Type', 'application/json');
 
     }
 

@@ -13,23 +13,7 @@
 	padding: 10px;
 	border: 2px solid grey;
 }
-/*
-#loading .status_header {
-	background-color: #7FC9FF;
-}
 
-
-#outbound .status_header {
-	background-color: #ADFFC5;
-}
-
-#returning .status_header {
-	background-color: #FFDCBC;
-}
-
-#maintenance .status_header {
-	background-color: #C0C0C0;
-}*/
 .loading {
 	background-color: #7FC9FF;
 }
@@ -45,6 +29,10 @@
 
 .maintenance  {
 	background-color: #C0C0C0;
+}
+
+.other {
+	background-color: #CCAAAA;
 }
 
 

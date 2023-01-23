@@ -17,10 +17,10 @@
 
 
 <div class="main" id="driver_app">
-<div> Hello, {{getCurrentDriverName (driver_id) }}. 
-	You are currently listed as: <span :class="status_css_ids[getCurrentDriverStatusId(driver_id)]"> {{getCurrentDriverStatusLabel(driver_id)}}</span>
+<div> Hello, {{driver_name }}. <span class="error_msg">{{error}}</span>
+	You are currently listed as: <span :class="status_css_ids[getCurrentDriverStatusId(driver_id)]"> {{status_label}}</span>
 </div>
-<div class="error_msg">{{error}}</div>
+<span class="error_msg">{{error}}</span>
 <div>
 	<select class="driver_status_change" id="driver_status_change" @change="changeDriverStatus($event)">
 		<option value="" selected disabled>Select new status</option>

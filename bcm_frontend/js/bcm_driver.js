@@ -6,11 +6,19 @@ const { createApp } = Vue
               //driver_id should be set by authentication mechanism,but we use a value
               //  to simplify the assignment.
               driver_id: 1,
+              driver_name: "",
+              status_label: "",
               statuses: [],
               status_overview:[],
               status_css_ids: ["n/a", "loading", "outbound", "returning", "maintenance", "other"],
               error: "",
             }
+          },
+         watch: {
+            status_overview() {
+              this.setCurrentDriverStatusLabel();
+              this.setCurrentDriverName();
+            },
           },
           methods: {
             getStatuses() {
@@ -25,28 +33,29 @@ const { createApp } = Vue
               .then(data=>this.status_overview=data);
             },
 
-            getCurrentDriverName(driver_id){
+            setCurrentDriverName(){
               var driver_name = "";
-              
+              var driver_id = this.driver_id;
               for (i=0; i< this.status_overview.length;i++){
                 var status = this.status_overview[i];
                 if(status.driver_id == driver_id){
                   driver_name = status.driver_first_name + " " + status.driver_last_name;
                 }
               }
-              return(driver_name);
+              this.driver_name = driver_name;
             },
-            getCurrentDriverStatusLabel(driver_id){
-              var driver_status = 0;
-              
+            
+            setCurrentDriverStatusLabel(){
+              var driver_id = this.driver_id;
               for (i=0; i< this.status_overview.length;i++){
                 var status = this.status_overview[i];
                 if(status.driver_id == driver_id){
                   driver_status = status.status_label;
                 }
               }
-              return(driver_status);
+              this.status_label = driver_status;
             },
+            
             getCurrentDriverStatusId(driver_id){
               var driver_status = 0;
               
@@ -58,6 +67,7 @@ const { createApp } = Vue
               }
               return(driver_status);
             },
+            
             getCurrentDriverTruckId(driver_id){
               var driver_truck = 0;
               
@@ -69,11 +79,12 @@ const { createApp } = Vue
               }
               return(driver_truck);
             },
+            
             changeDriverStatus(event){
               //get the status from dropdown and POST it
               //  do nothing if status isn't 1-5.
-              var message_response="";              
-              new_status = event.target.value;
+              var message_response="";             
+              new_status = Number(event.target.value);
               if (new_status <1 || new_status > 5)
               {
                 return;
@@ -92,17 +103,17 @@ const { createApp } = Vue
                     "driver_id": driver_id,
                     "status_id": new_status 
                   })
-                }).then(response=> response.json())
-                .then(data=> message_response);
-                if (message_response.code == 0)
+                }).then(response=>response.json()).then(data=>message_response=data)
+                .then(() => {if (message_response.code == 0)
                 {
-                    return;
+                  this.error = "Update was successful.";
+                  this.getStatusOverview();
                 }
                 else
                 {
-                  this.error = message_response;
-                }
-                
+                  this.error = "Error on update: "+ message_response.message;
+                }});
+                                             
               }
           },
           computed: {
@@ -113,9 +124,7 @@ const { createApp } = Vue
             this.getStatuses();
 
             //get a list of all truck statuses to populate the lanes
-            this.getStatusOverview();
-
-            
+            this.getStatusOverview();           
           },  
         })
         board.mount('#driver_app')

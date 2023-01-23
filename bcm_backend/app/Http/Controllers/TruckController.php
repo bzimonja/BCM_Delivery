@@ -69,7 +69,7 @@ class TruckController extends Controller
 
         if ($response)
         {
-            return response(json_encode($response), 400)->header('Content-Type', 'application/json');
+            return response(json_encode($response), 200)->header('Content-Type', 'application/json');
         }
 
         $parameters = $request->json()->all();
@@ -81,7 +81,7 @@ class TruckController extends Controller
             $response["code"] = 4;
             $response["mesage"] = $verify_message;
 
-            return response(json_encode($response), 400)->header('Content-Type', 'application/json');
+            return response(json_encode($response), 200)->header('Content-Type', 'application/json');
         }
 
         //call the database update function and return the success or fail message
@@ -127,7 +127,7 @@ class TruckController extends Controller
             }
         }
 
-        return response(json_encode($response), 400)->header('Content-Type', 'application/json');
+        return response(json_encode($response), 200)->header('Content-Type', 'application/json');
     }
 
     /**
