@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script type='text/javascript' src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<link rel="stylesheet" href="css/bcm.css">
+
+<title>BCM Deliveries Frontend</title>
+
+</head>
+
+<body>
+
+<h1 class="page_header">BCM Deliveries Landing Page</h1>
+
+<div class="base_text">Please select your persona:</div>
+
+<div class="choose_persona"><a href="bob.html">Bob Zhang</a>, a driver</div>
+<div class="choose_persona"><a href="marie.html">Marie Vega</a>, a dispatcher</div>
+
+<div class="main" id="board_app">
+
+	<h2 class="board_header">Current Status of all Trucks:</h2>
+	<div id="board_body" class='board-container'>
+		<div class="status" v-for="status in statuses" :id="status_css_ids[status.id]">
+			<div class="status_header">{{status.status_label}}</div>
+			<div class="status_content">
+			<template v-for="overview in status_overview">
+				<div class="truck" v-if="overview.status_id == status.id">
+					<div class="truck_label">{{overview.truck_label}}</div>
+					<div class="driver">{{overview.driver_first_name || 'No Driver'}} {{overview.driver_last_name}}</div>
+					<div class="note">Note: {{overview.note || "N/A"}}</div>
+				</div>
+			</template>
+			</div>
+				
+			</div>		
+		</div>
+			
+		</div>
+		
+	</div>
+
+</div>
+<script type='text/javascript' src="js/bcm_frontpage.js"></script>
+
+</body>
+</html>
