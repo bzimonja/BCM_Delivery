@@ -57,3 +57,13 @@ For POST and PUT request types only, Update entry point is:
     Returns a JSON file in the format:
     {"code": <0 if success, positive int based on error>,
         "message": <corresponding error message>} 
+
+#FRONTEND
+
+/bcm_frontend contains the HTML, CSS and JS files for the frontend
+
+index.html shows the board of all the current trucks in their lane. 
+
+/html/bob.html shows the status for an individual driver. He can see the other drivers in their lanes. 
+
+If he chooses a new status from the dropdown, it will be updated and refreshed. 
