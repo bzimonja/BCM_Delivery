@@ -45,7 +45,7 @@ class Utils
             return response(json_encode($response), 400)->header('Content-Type', 'application/json');
         }
 
-        return true;
+        return false;
 
 	}
 	//method to verify input parameters for /api/truck entry points

@@ -32,5 +32,5 @@ Route::any('/status/index',[StatusController::class, 'index']);
 Route::any('/driver/index',[DriverController::class, 'index']);
 
 Route::any('/truck_status/index',[TruckStatusController::class, 'index']);
-Route::post('/truck_status/update', [TruckStatusController::class, 'update']);
+Route::any('/truck_status/update', [TruckStatusController::class, 'update']);
 

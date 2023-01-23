@@ -108,7 +108,12 @@ class TruckStatusController extends Controller
         $response = array();
 
         //check that the request is PUT or POST, with a valid non-empty JSON file
-        Utils::verifySaveRequest ($request);
+        $response = Utils::verifySaveRequest ($request);
+
+        if ($response)
+        {
+            return response(json_encode($response), 400)->header('Content-Type', 'application/json');
+        }
 
         $parameters = $request->json()->all();
         
