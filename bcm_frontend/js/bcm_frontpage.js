@@ -3,7 +3,6 @@
         const board = createApp({    
           data() {
             return {
-              message: "Works",
               statuses: [],
               status_overview:[],
               status_css_ids: ["n/a", "loading", "outbound", "returning", "maintenance", "other"],

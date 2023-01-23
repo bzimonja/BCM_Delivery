@@ -24,8 +24,8 @@
 
 	<h2 class="board_header">Current Status of all Trucks:</h2>
 	<div id="board_body" class='board-container'>
-		<div class="status" v-for="status in statuses" :id="status_css_ids[status.id]">
-			<div class="status_header">{{status.status_label}}</div>
+		<div class="status" v-for="status in statuses" >
+			<div :class="status_css_ids[status.id]">{{status.status_label}}</div>
 			<div class="status_content">
 			<template v-for="overview in status_overview">
 				<div class="truck" v-if="overview.status_id == status.id">

@@ -13,7 +13,7 @@
 	padding: 10px;
 	border: 2px solid grey;
 }
-
+/*
 #loading .status_header {
 	background-color: #7FC9FF;
 }
@@ -29,7 +29,24 @@
 
 #maintenance .status_header {
 	background-color: #C0C0C0;
+}*/
+.loading {
+	background-color: #7FC9FF;
 }
+
+
+.outbound  {
+	background-color: #ADFFC5;
+}
+
+.returning  {
+	background-color: #FFDCBC;
+}
+
+.maintenance  {
+	background-color: #C0C0C0;
+}
+
 
 .status_content {
 	margin 2px;
@@ -37,6 +54,11 @@
 .truck {
 	padding: 3px;
 	border: 2px solid #F0F0F0;
+	background-color: #F9F9FA;
+}
+
+.truck_label{
+	background-color: #F8ECD9;
 }
 
 #other .status_header {
